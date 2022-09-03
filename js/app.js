@@ -21,7 +21,7 @@ const showCategories = categories => {
         console.log(category.category_name);
 
         const newsNavContainer = document.getElementById('news-nav-container');
-
+        
         const newsDiv = document.createElement('ul');
         newsDiv.innerHTML = `
         <button onclick="categoryOnclick(${category.category_id})" class="btn btn-primary nav-link text-secondary" href="#">${category.category_name}</button>
@@ -51,7 +51,7 @@ const loadNewsCategory = async(category_id) => {
 
 const newsDisplay = newsArray => {
     const newsDisplayDiv = document.getElementById('news-display');
-
+    newsDisplayDiv.innerHTML=``;
     showNewsItemNumber(newsArray);
 
     //for(const news of newsArray){
@@ -131,6 +131,16 @@ const home = () => {
     const blogs = document.getElementById('blogs');
     home.disabled = true;
     blogs.disabled = false;
+
+    // click on the category
+    const newsNumber = document.getElementById('news-item-number');
+    newsNumber.innerHTML = `
+    <h5>Click on the category to read news</h5>
+    `;
+
+    // hide blogs
+    const loaderSection = document.getElementById('blogs-section');
+    loaderSection.classList.add('d-none');
     loadNews();
 }
 
@@ -142,6 +152,24 @@ const blogs = () => {
     home.disabled = false;
     blogs.disabled = true;
     blogsSection = document.getElementById('blogs-section');
+
+    // clear news section
+    const newsNavContainer = document.getElementById('news-nav-container');
+    newsNavContainer.innerHTML = ``;
+
+    const newsDisplayDiv = document.getElementById('news-display');
+    newsDisplayDiv.innerHTML=``;
+
+    // number of blogs
+    const newsNumber = document.getElementById('news-item-number');
+    newsNumber.innerHTML = `
+    <h5>4 items found</h5>
+    `;
+
+    // display blogs
+    const loaderSection = document.getElementById('blogs-section');
+    loaderSection.classList.remove('d-none');
+
 }
 
 // testing
