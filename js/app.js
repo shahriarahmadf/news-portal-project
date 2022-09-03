@@ -128,11 +128,21 @@ const showNewsItemNumber = (newsArray) => {
 // home selected
 const home = () => {
     const home = document.getElementById('home');
+    const blogs = document.getElementById('blogs');
     home.disabled = true;
+    blogs.disabled = false;
     loadNews();
 }
 
 // blogs
+
+const blogs = () => {
+    const home = document.getElementById('home');
+    const blogs = document.getElementById('blogs');
+    home.disabled = false;
+    blogs.disabled = true;
+    blogsSection = document.getElementById('blogs-section');
+}
 
 // testing
 home();
