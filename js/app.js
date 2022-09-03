@@ -43,6 +43,7 @@ const loadNewsCategory = async(category_id) => {
     }
     catch(error){
         console.log(error);
+        toggleSpinner(false);
     }
 }
 
@@ -147,7 +148,16 @@ const displayModal = news => {
     console.log(news);
     const modalTitle = document.getElementById('exampleModalLabel');
     const modalText = document.getElementById('modal-text');
-    modalTitle.innerHTML = `${news[0].title}`;
+    modalTitle.innerHTML = `
+    <div class="d-flex flex-column align-items-center">
+        <div>
+            <img class="img-fluid" style="width:300px;" src="${news[0].image_url}">
+        </div>
+        <div>
+            <h2 class="text-center">${news[0].title}</h2>
+        </div>
+    </div>
+    `;
     modalText.innerHTML = `
     ${news[0].details}
     <br>
