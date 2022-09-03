@@ -146,7 +146,7 @@ const displayModal = news => {
     modalTitle.innerHTML = `
     <div class="d-flex flex-column align-items-center">
         <div>
-            <img class="img-fluid" style="width:300px;" src="${news[0].image_url}">
+            <img class="img-fluid" style="width:400px;" src="${news[0].image_url}">
         </div>
         <div>
             <h2 class="text-center">${news[0].title}</h2>
