@@ -1,4 +1,3 @@
-
 // fetch api
 
 const loadNews = async() => {
@@ -92,7 +91,6 @@ let newsDisplay = newsArray => {
                         <div>
                             <button onclick="updateModal('${news._id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Details</button>
                         </div>
-                    
                     </div>
                 </div>
             </div>
@@ -102,9 +100,6 @@ let newsDisplay = newsArray => {
     })
     toggleSpinner(false);
 }
-
-// news
-// https://openapi.programming-hero.com/api/news/category/{category_id}
 
 // showdetails function
 
@@ -181,16 +176,15 @@ const home = () => {
     home.disabled = true;
     blogs.disabled = false;
 
-    // click on the category
-    const newsNumber = document.getElementById('news-item-number');
-    newsNumber.innerHTML = `
-    <h5>Click on the category to read news</h5>
-    `;
 
     // hide blogs
     const loaderSection = document.getElementById('blogs-section');
     loaderSection.classList.add('d-none');
+
+    // load Breaking News as default
     loadNews();
+    loadNewsCategory('1');
+
 }
 
 // blogs
