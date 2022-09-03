@@ -89,7 +89,7 @@ let newsDisplay = newsArray => {
                             </div>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Details</button>
+                            <button onclick="updateModal('${news._id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Show Details</button>
                         </div>
                     
                     </div>
@@ -127,6 +127,42 @@ const showNewsItemNumber = (newsArray) => {
     `;
     
 }
+
+// update modal
+const updateModal = async(newsId) => {
+        console.log(newsId);
+        url = `https://openapi.programming-hero.com/api/news/${newsId}`;
+        try{
+            const res = await fetch(url);
+            const data = await res.json();
+            displayModal(data.data);
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+
+// displayModal
+const displayModal = news => {
+    console.log(news);
+    const modalTitle = document.getElementById('exampleModalLabel');
+    const modalText = document.getElementById('modal-text');
+    modalTitle.innerHTML = `${news[0].title}`;
+    modalText.innerHTML = `
+    ${news[0].details}
+    <br>
+    <br>
+
+    <img style="height:80px;" class="img-fluid rounded-circle" src="${news[0].author.img}">
+
+    <p>Author: <strong> ${news[0].author.name ? news[0].author.name: 'No information found'} </strong> </p>
+
+    <p>Published Date: ${news[0].author.published_date ? news[0].author.published_date: 'No information found'}</p>
+
+    <p>Total Views: ${news[0].total_view ? news[0].total_view: 'No information found'}</p>
+    `;
+}
+
 
 // home selected
 const home = () => {
