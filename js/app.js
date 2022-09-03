@@ -54,7 +54,8 @@ const newsDisplay = newsArray => {
 
     showNewsItemNumber(newsArray);
 
-    for(const news of newsArray){
+    //for(const news of newsArray){
+    newsArray.forEach(news => {
         console.log(news);
         const newsCard = document.createElement('card');
         newsCard.classList.add('p-2');
@@ -81,7 +82,7 @@ const newsDisplay = newsArray => {
                         <div>
                             <div class="text-center" id="total-views">
                             <img src="./images/totalviews.png">
-                            <h6>${news.total_view} views</h6>
+                            <h6>${news.total_view ? news.total_view: 'No information on'} views</h6>
                             </div>
                         </div>
                         <div>
@@ -94,7 +95,7 @@ const newsDisplay = newsArray => {
         </div>
         `;
         newsDisplayDiv.appendChild(newsCard);
-    }
+    })
     toggleSpinner(false);
 }
 
@@ -124,5 +125,14 @@ const showNewsItemNumber = (newsArray) => {
     
 }
 
+// home selected
+const home = () => {
+    const home = document.getElementById('home');
+    home.disabled = true;
+    loadNews();
+}
+
+// blogs
+
 // testing
-loadNews();
+home();
