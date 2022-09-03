@@ -215,5 +215,5 @@ const blogs = () => {
 
 }
 
-// testing
+// run the program
 home();
