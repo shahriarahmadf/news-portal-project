@@ -17,11 +17,8 @@ const loadNews = async() => {
 
 const showCategories = categories => {
     for(const category of categories){
-        console.log(category);
-        console.log(category.category_name);
 
         const newsNavContainer = document.getElementById('news-nav-container');
-        
         const newsDiv = document.createElement('ul');
         newsDiv.innerHTML = `
         <button onclick="categoryOnclick(${category.category_id})" class="btn btn-primary nav-link text-secondary" href="#">${category.category_name}</button>
@@ -49,14 +46,20 @@ const loadNewsCategory = async(category_id) => {
     }
 }
 
-const newsDisplay = newsArray => {
+let newsDisplay = newsArray => {
     const newsDisplayDiv = document.getElementById('news-display');
     newsDisplayDiv.innerHTML=``;
+
+    // update number of items
     showNewsItemNumber(newsArray);
 
+
+    // sort the array
+    newsArray.sort((a,b) => b.total_view - a.total_view);
+    console.log(newsArray[0].total_view);
+    
     //for(const news of newsArray){
     newsArray.forEach(news => {
-        console.log(news);
         const newsCard = document.createElement('card');
         newsCard.classList.add('p-2');
         newsCard.innerHTML=`
